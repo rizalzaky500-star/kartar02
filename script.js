@@ -176,7 +176,7 @@ if (typeof IntersectionObserver === 'function' && !prefersReducedMotion.matches)
             clearTimeout(revealFallbackTimer);
             revealObserver.disconnect();
         }
-    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px 12% 0px' });
 
     revealElements.forEach(el => {
         el.classList.add('reveal-pending');
