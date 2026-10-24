@@ -192,58 +192,7 @@ if (typeof IntersectionObserver === 'function' && !prefersReducedMotion.matches)
     }, 2000);
 }
 
-// --- 5. SMOOTH COUNTER UP ---
-let countersAnimated = false;
-const statsSection = document.getElementById('statsSection');
-const counters = document.querySelectorAll('.counter');
-
-function startCounters() {
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        if (prefersReducedMotion.matches) {
-            counter.innerText = target;
-            return;
-        }
-        const speed = 40;
-        const update = () => {
-            const count = +counter.innerText;
-            const inc = Math.ceil(target / speed);
-            if (count < target) {
-                counter.innerText = Math.min(count + inc, target);
-                setTimeout(update, 35);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        update();
-    });
-}
-
-if (statsSection && typeof IntersectionObserver === 'function') {
-    let counterFallbackTimer;
-    const counterObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !countersAnimated) {
-            countersAnimated = true;
-            clearTimeout(counterFallbackTimer);
-            startCounters();
-        }
-    }, { threshold: 0.3 });
-    counterObserver.observe(statsSection);
-    counterFallbackTimer = setTimeout(() => {
-        if (!countersAnimated) {
-            countersAnimated = true;
-            counters.forEach(counter => {
-                counter.innerText = counter.getAttribute('data-target');
-            });
-        }
-        counterObserver.disconnect();
-    }, 2000);
-} else if (statsSection) {
-    countersAnimated = true;
-    startCounters();
-}
-
-// --- 6. FILTER GALERI ---
+// --- 5. FILTER GALERI ---
 function filterGallery(category, button) {
     const btns = document.querySelectorAll('.gallery-filter-btn');
     btns.forEach(btn => {
