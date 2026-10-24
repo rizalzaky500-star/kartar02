@@ -16,13 +16,13 @@
 <body class="bg-[#031915] text-slate-100 font-sans antialiased selection:bg-[#34caa1] selection:text-[#031915] min-h-screen flex flex-col relative overflow-x-hidden">
 
     <!-- Scroll Progress Indicator -->
-    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-gold z-50 transition-all duration-200 w-0"></div>
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-gold z-50 transition-[width] duration-200 w-0"></div>
 
     <!-- Calm Ambient Particle Canvas Background -->
     <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-30"></canvas>
 
     <!-- 1. HEADER / NAVBAR -->
-    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-500" id="navbar">
+    <header class="fixed top-0 left-0 w-full z-40 transition-[background-color,box-shadow,transform] duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <div class="glass-nav rounded-2xl px-5 py-3 flex items-center justify-between shadow-lg">
                 <!-- Logo & Brand Name -->
@@ -38,15 +38,15 @@
 
                 <!-- Desktop Navigation Menu -->
                 <nav class="hidden md:flex items-center gap-7 font-medium text-sm text-slate-200">
-                    <a href="#hero" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Beranda</a>
-                    <a href="#tentang" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Tentang Kami</a>
-                    <a href="#proker" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Program Kerja</a>
-                    <a href="#galeri" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Galeri</a>
+                    <a href="#hero" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-[width] after:duration-300">Beranda</a>
+                    <a href="#tentang" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-[width] after:duration-300">Tentang Kami</a>
+                    <a href="#proker" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-[width] after:duration-300">Program Kerja</a>
+                    <a href="#galeri" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-[width] after:duration-300">Galeri</a>
                 </nav>
 
                 <!-- CTA Button & Mobile Toggle -->
                 <div class="flex items-center gap-3">
-                    <a href="#gabung" class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-xs sm:text-sm shadow-md hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                    <a href="#gabung" class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-xs sm:text-sm shadow-md hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-[transform,filter] duration-300">
                         <i class="fa-solid fa-paper-plane text-xs"></i> Pendaftaran
                     </a>
                     <button id="menuBtn" type="button" aria-label="Buka Menu Navigasi" aria-controls="mobileMenu" aria-expanded="false" class="md:hidden text-xl text-slate-200 hover:text-emerald-300 p-2 focus:outline-none">
@@ -99,10 +99,10 @@
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#proker" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-sm sm:text-base shadow-lg shadow-emerald-950/40 hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+                    <a href="#proker" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-sm sm:text-base shadow-lg shadow-emerald-950/40 hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-[transform,filter] duration-300 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-compass"></i> Jelajahi Kegiatan
                     </a>
-                    <a href="#gabung" class="w-full sm:w-auto px-7 py-3.5 rounded-xl glass-card border border-white/15 text-slate-200 font-semibold text-sm sm:text-base hover:bg-white/10 hover:border-emerald-400/40 transition-all duration-300 flex items-center justify-center gap-2">
+                    <a href="#gabung" class="w-full sm:w-auto px-7 py-3.5 rounded-xl glass-card border border-white/15 text-slate-200 font-semibold text-sm sm:text-base hover:bg-white/10 hover:border-emerald-400/40 transition-[transform,background-color,border-color,box-shadow] duration-300 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-user-plus"></i> Bergabung Bersama Kami
                     </a>
                 </div>
@@ -248,10 +248,10 @@
 
             <!-- Filter Buttons -->
             <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-10 text-xs sm:text-sm">
-                <button data-gallery-filter="all" class="gallery-filter-btn px-4 py-2 rounded-xl bg-emerald-500 text-[#031915] font-bold transition-all">Semua</button>
-                <button data-gallery-filter="gotong-royong" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-all">Gotong Royong</button>
-                <button data-gallery-filter="hut-ri" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-all">HUT RI</button>
-                <button data-gallery-filter="destinasi" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-all">Destinasi</button>
+                <button data-gallery-filter="all" class="gallery-filter-btn px-4 py-2 rounded-xl bg-emerald-500 text-[#031915] font-bold transition-colors">Semua</button>
+                <button data-gallery-filter="gotong-royong" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-colors">Gotong Royong</button>
+                <button data-gallery-filter="hut-ri" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-colors">HUT RI</button>
+                <button data-gallery-filter="destinasi" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-colors">Destinasi</button>
             </div>
 
             <!-- Gallery Interactive Grid -->
@@ -319,7 +319,7 @@
                     </div>
 
                     <!-- Alert / Banner Peringatan Usia -->
-                    <div id="ageErrorAlert" class="hidden mb-4 p-3.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-3 transition-all">
+                    <div id="ageErrorAlert" class="hidden mb-4 p-3.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-3">
                         <i class="fa-solid fa-triangle-exclamation text-base flex-shrink-0"></i>
                         <span>Mohon maaf, pendaftaran Karang Taruna Cakra Muda khusus untuk warga berusia **minimal 18 tahun**.</span>
                     </div>
@@ -363,7 +363,7 @@
                             <textarea id="formPesan" rows="3" required placeholder="Ingin menambah relasi, belajar organisasi, dan aktif dalam kegiatan warga..." class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-sm shadow-md hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-sm shadow-md hover:brightness-110 active:scale-95 transition-[transform,filter] duration-300 flex items-center justify-center gap-2">
                             <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Pendaftaran via WhatsApp
                         </button>
                     </form>
@@ -409,8 +409,8 @@
                         <div class="pt-6 mt-6 border-t border-white/10">
                             <h5 class="text-[11px] uppercase font-bold text-slate-400 mb-3">Media Sosial</h5>
                             <div class="flex gap-3">
-                                <a href="https://www.instagram.com/cakra_muda23?cplk=YXpkdm5rMHlzNGsy" aria-label="Instagram Cakra Muda @cakra_muda23" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-300 transition-all"><i class="fa-brands fa-instagram text-base"></i></a>
-                                <a href="https://www.tiktok.com/@cakramuda_23?_r=1&amp;_t=ZS-9ApTicrSo0S" aria-label="TikTok Cakra Muda @cakramuda_23" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-300 transition-all"><i class="fa-brands fa-tiktok text-base"></i></a>
+                                <a href="https://www.instagram.com/cakra_muda23?cplk=YXpkdm5rMHlzNGsy" aria-label="Instagram Cakra Muda @cakra_muda23" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-300"><i class="fa-brands fa-instagram text-base"></i></a>
+                                <a href="https://www.tiktok.com/@cakramuda_23?_r=1&amp;_t=ZS-9ApTicrSo0S" aria-label="TikTok Cakra Muda @cakramuda_23" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-300"><i class="fa-brands fa-tiktok text-base"></i></a>
                             </div>
                         </div>
                     </div>
