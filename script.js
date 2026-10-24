@@ -3,6 +3,7 @@
 // Gunakan kode negara tanpa tanda '+', contoh: '6281234567890'
 // =========================================================================
 const TELEPHONE_WA = '6287756510552';
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 document.addEventListener('DOMContentLoaded', () => {
     const displayEl = document.getElementById('displayWaContact');
@@ -93,40 +94,68 @@ class Particle {
 
 function initParticles() {
     particles = [];
-    const count = Math.min(Math.floor(window.innerWidth / 25), 45);
+    const count = Math.min(Math.floor(window.innerWidth / 45), 20);
     for (let i = 0; i < count; i++) {
         particles.push(new Particle());
     }
 }
 initParticles();
 
+let canvasAnimationFrame = null;
 function animateCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
         particles[i].draw();
     }
-    requestAnimationFrame(animateCanvas);
+    canvasAnimationFrame = requestAnimationFrame(animateCanvas);
 }
-animateCanvas();
+
+function updateCanvasAnimation() {
+    if (document.hidden || prefersReducedMotion.matches) {
+        if (canvasAnimationFrame !== null) {
+            cancelAnimationFrame(canvasAnimationFrame);
+            canvasAnimationFrame = null;
+        }
+        return;
+    }
+    if (canvasAnimationFrame === null) animateCanvas();
+}
+
+document.addEventListener('visibilitychange', updateCanvasAnimation);
+prefersReducedMotion.addEventListener('change', updateCanvasAnimation);
+updateCanvasAnimation();
 
 // --- 2. SCROLL PROGRESS INDICATOR ---
+let scrollUpdateScheduled = false;
 window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('scroll-progress').style.width = scrolled + '%';
-});
+    if (scrollUpdateScheduled) return;
+    scrollUpdateScheduled = true;
+    requestAnimationFrame(() => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+        document.getElementById('scroll-progress').style.width = scrolled + '%';
+        scrollUpdateScheduled = false;
+    });
+}, { passive: true });
 
 // --- 3. MOBILE MENU TOGGLE ---
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
+function setMobileMenuOpen(isOpen) {
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    menuBtn.setAttribute('aria-label', isOpen ? 'Tutup Menu Navigasi' : 'Buka Menu Navigasi');
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    mobileMenu.inert = !isOpen;
+}
+
 menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+    setMobileMenuOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
 });
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
+        setMobileMenuOpen(false);
     });
 });
 
@@ -149,6 +178,10 @@ const counters = document.querySelectorAll('.counter');
 function startCounters() {
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
+        if (prefersReducedMotion.matches) {
+            counter.innerText = target;
+            return;
+        }
         const speed = 40;
         const update = () => {
             const count = +counter.innerText;
@@ -203,6 +236,10 @@ function openLightbox(imgUrl, caption) {
 function closeLightbox() {
     const modal = document.getElementById('lightboxModal');
     modal.classList.remove('opacity-100');
+    if (prefersReducedMotion.matches) {
+        modal.classList.add('hidden');
+        return;
+    }
     setTimeout(() => modal.classList.add('hidden'), 300);
 }
 
