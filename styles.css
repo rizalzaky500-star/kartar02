@@ -10,10 +10,10 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.25s ease, transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .glass-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     background: rgba(19, 99, 86, 0.5);
     border-color: rgba(52, 202, 161, 0.3);
     box-shadow: 0 20px 40px -15px rgba(3, 25, 21, 0.6), 0 0 20px rgba(52, 202, 161, 0.1);
@@ -40,11 +40,33 @@
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
 }
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+#mobileMenu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-0.5rem);
+    transition: max-height 0.3s ease, opacity 0.2s ease, transform 0.3s ease;
+}
+#mobileMenu[aria-hidden="false"] {
+    max-height: 32rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #64e3c2;
+    outline-offset: 3px;
 }
 
 /* Smooth Scrollbar */
@@ -60,4 +82,21 @@
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #34caa1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal,
+    .reveal.active {
+        opacity: 1;
+        transform: none;
+    }
 }

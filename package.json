@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node -e \"console.log('Static site; no build step required')\""
+    "build": "tailwindcss -i ./tailwind.input.css -o ./tailwind.generated.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
   }
 }
