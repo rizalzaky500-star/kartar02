@@ -2,16 +2,15 @@
 // CONFIGURASI NOMOR WHATSAPP (Ubah nomor di bawah ini sesuai kebutuhan)
 // Gunakan kode negara tanpa tanda '+', contoh: '6281234567890'
 // =========================================================================
-const TELEPHONE_WA = '6281234567890';
+const TELEPHONE_WA = '6287756510552';
 
 document.addEventListener('DOMContentLoaded', () => {
     const displayEl = document.getElementById('displayWaContact');
     if (displayEl && TELEPHONE_WA) {
-        let formatted = TELEPHONE_WA;
-        if (TELEPHONE_WA.startsWith('62')) {
-            formatted = '+62 ' + TELEPHONE_WA.substring(2, 5) + '-' + TELEPHONE_WA.substring(5, 9) + '-' + TELEPHONE_WA.substring(9);
-        }
-        displayEl.innerText = formatted;
+        const localNumber = TELEPHONE_WA.startsWith('62')
+            ? '0' + TELEPHONE_WA.substring(2)
+            : TELEPHONE_WA;
+        displayEl.innerText = localNumber;
     }
 });
 
