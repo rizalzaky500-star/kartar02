@@ -161,14 +161,36 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
 
 // --- 4. GENTLE SCROLL REVEAL ---
 const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
+if (typeof IntersectionObserver === 'function' && !prefersReducedMotion.matches) {
+    let remainingReveals = revealElements.length;
+    let revealFallbackTimer;
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting || !entry.target.classList.contains('reveal-pending')) return;
+            entry.target.classList.remove('reveal-pending');
             entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+            remainingReveals--;
+        });
+        if (remainingReveals === 0) {
+            clearTimeout(revealFallbackTimer);
+            revealObserver.disconnect();
         }
+    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+
+    revealElements.forEach(el => {
+        el.classList.add('reveal-pending');
+        revealObserver.observe(el);
     });
-}, { threshold: 0.1 });
-revealElements.forEach(el => revealObserver.observe(el));
+
+    revealFallbackTimer = setTimeout(() => {
+        revealElements.forEach(el => {
+            el.classList.remove('reveal-pending');
+            el.classList.add('active');
+        });
+        revealObserver.disconnect();
+    }, 2000);
+}
 
 // --- 5. SMOOTH COUNTER UP ---
 let countersAnimated = false;
@@ -197,13 +219,29 @@ function startCounters() {
     });
 }
 
-const counterObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !countersAnimated) {
-        countersAnimated = true;
-        startCounters();
-    }
-}, { threshold: 0.3 });
-if (statsSection) counterObserver.observe(statsSection);
+if (statsSection && typeof IntersectionObserver === 'function') {
+    let counterFallbackTimer;
+    const counterObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !countersAnimated) {
+            countersAnimated = true;
+            clearTimeout(counterFallbackTimer);
+            startCounters();
+        }
+    }, { threshold: 0.3 });
+    counterObserver.observe(statsSection);
+    counterFallbackTimer = setTimeout(() => {
+        if (!countersAnimated) {
+            countersAnimated = true;
+            counters.forEach(counter => {
+                counter.innerText = counter.getAttribute('data-target');
+            });
+        }
+        counterObserver.disconnect();
+    }, 2000);
+} else if (statsSection) {
+    countersAnimated = true;
+    startCounters();
+}
 
 // --- 6. FILTER GALERI ---
 function filterGallery(category, button) {
