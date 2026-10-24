@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karang Taruna Cakra Muda RT 02 / RW 03 - Wadah Kreativitas & Kepemudaan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#031915] text-slate-100 font-sans antialiased selection:bg-[#34caa1] selection:text-[#031915] min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-gold z-50 transition-all duration-200 w-0"></div>
+
+    <!-- Calm Ambient Particle Canvas Background -->
+    <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-30"></canvas>
+
+    <!-- 1. HEADER / NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-500" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="glass-nav rounded-2xl px-5 py-3 flex items-center justify-between shadow-lg">
+                <!-- Logo & Brand Name -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center font-extrabold text-lg text-[#031915] shadow-md group-hover:scale-105 transition-transform duration-300">
+                        CM
+                    </div>
+                    <div>
+                        <span class="text-base font-bold tracking-wide block leading-tight text-white group-hover:text-emerald-300 transition-colors">CAKRA MUDA</span>
+                        <span class="text-[11px] text-emerald-300/80 block font-medium">RT 02 / RW 03</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center gap-7 font-medium text-sm text-slate-200">
+                    <a href="#hero" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Beranda</a>
+                    <a href="#tentang" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Tentang Kami</a>
+                    <a href="#proker" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Program Kerja</a>
+                    <a href="#galeri" class="hover:text-emerald-300 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-400 hover:after:w-full after:transition-all after:duration-300">Galeri</a>
+                </nav>
+
+                <!-- CTA Button & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <a href="#gabung" class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-xs sm:text-sm shadow-md hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                        <i class="fa-solid fa-paper-plane text-xs"></i> Pendaftaran
+                    </a>
+                    <button id="menuBtn" aria-label="Buka Menu Navigation" class="md:hidden text-xl text-slate-200 hover:text-emerald-300 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden max-w-7xl mx-auto px-4 mt-2">
+            <div class="glass-nav rounded-2xl p-5 flex flex-col gap-3 shadow-xl border border-white/10 text-sm">
+                <a href="#hero" class="mobile-nav-link text-slate-200 font-medium py-2 border-b border-white/5 hover:text-emerald-300">Beranda</a>
+                <a href="#tentang" class="mobile-nav-link text-slate-200 font-medium py-2 border-b border-white/5 hover:text-emerald-300">Tentang Kami</a>
+                <a href="#proker" class="mobile-nav-link text-slate-200 font-medium py-2 border-b border-white/5 hover:text-emerald-300">Program Kerja</a>
+                <a href="#galeri" class="mobile-nav-link text-slate-200 font-medium py-2 border-b border-white/5 hover:text-emerald-300">Galeri Kegiatan</a>
+                <a href="#gabung" class="mobile-nav-link flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-center mt-1">
+                    <i class="fa-solid fa-paper-plane"></i> Gabung Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow z-10 pt-20">
+
+        <!-- 2. HERO SECTION -->
+        <section id="hero" class="relative min-h-[85vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden">
+            <!-- Subtle Ambient Background Glows -->
+            <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-700/15 rounded-full blur-[140px] pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <!-- Warm Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-emerald-400/20 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 animate-float-calm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Wadah Kreativitas & Kepemudaan RT 02 / RW 03
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.15]">
+                    KARANG TARUNA <br>
+                    <span class="gradient-title">CAKRA MUDA</span>
+                </h1>
+
+                <!-- Subtitle / Tagline -->
+                <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+                    Menghadirkan ruang kolaborasi yang santai, inklusif, dan produktif untuk generasi pemuda RT 02 / RW 03 yang solid dan berdampak positif bagi lingkungan.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#proker" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-sm sm:text-base shadow-lg shadow-emerald-950/40 hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-compass"></i> Jelajahi Kegiatan
+                    </a>
+                    <a href="#gabung" class="w-full sm:w-auto px-7 py-3.5 rounded-xl glass-card border border-white/15 text-slate-200 font-semibold text-sm sm:text-base hover:bg-white/10 hover:border-emerald-400/40 transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i> Bergabung Bersama Kami
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TENTANG KAMI & STATISTIK -->
+        <section id="tentang" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2">Profil Singkat</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Tentang Cakra Muda</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-emerald-400 to-amber-gold mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Visi & Misi Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Visi Card -->
+                <div class="glass-card p-8 rounded-3xl relative">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-300 flex items-center justify-center text-xl font-bold mb-5">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Visi Utama</h4>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Terwujudnya generasi muda RT 02 / RW 03 yang mandiri, berkarakter mulia, aktif berkarya, serta menjunjung tinggi rasa kekeluargaan dan kepedulian sosial.
+                    </p>
+                </div>
+
+                <!-- Misi Card -->
+                <div class="glass-card p-8 rounded-3xl relative">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-300 flex items-center justify-center text-xl font-bold mb-5">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Misi Pergerakan</h4>
+                    <ul class="space-y-2.5 text-slate-300 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-400 mt-1 text-xs"></i>
+                            <span>Mempererat kebersamaan & silaturahmi antar pemuda warga RT 02 / RW 03.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-400 mt-1 text-xs"></i>
+                            <span>Wadah penyaluran hobi, olahraga, seni budaya, dan kreativitas digital.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-400 mt-1 text-xs"></i>
+                            <span>Mendukung kegiatan sosial masyarakat & pemeliharaan lingkungan bersih.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kartu Statistik (Counter Up) -->
+            <div id="statsSection" class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-emerald-300 mb-1"><span class="counter" data-target="65">0</span>+</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">Anggota Aktif Pemuda</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-amber-gold mb-1"><span class="counter" data-target="28">0</span>+</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">Program Selesai</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center col-span-2 md:col-span-1">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-teal-300 mb-1"><span class="counter" data-target="100">0</span>%</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">Semangat Gotong Royong</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROGRAM KERJA (PILAR KEGIATAN) -->
+        <section id="proker" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2">Pilar Kegiatan</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Program Kerja Utama</h3>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">Inisiatif berkelanjutan yang dirancang santai namun penuh nilai manfaat untuk masyarakat.</p>
+                <div class="w-16 h-1 bg-gradient-to-r from-emerald-400 to-amber-gold mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pilar 1 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xl mb-5">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Sosial & Kemasyarakatan</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Penggalangan bantuan sosial, donor darah warga, dan santunan anak yatim berkala di wilayah RT 02.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-emerald-400">Rutin Bulanan</span>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-teal-500/20 text-teal-300 flex items-center justify-center text-xl mb-5">
+                            <i class="fa-solid fa-volleyball"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Olahraga & Seni</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Latihan olahraga mingguan (voli, bulutangkis) dan pentas seni budaya malam puncak 17 Agustus.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-teal-300">Mingguan & Tahunan</span>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-gold/20 text-amber-gold flex items-center justify-center text-xl mb-5">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Kewirausahaan Muda</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Pemberdayaan bazar produk UMKM pemuda, pelatihan digital marketing, serta kas mandiri kriya.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-amber-gold">Berkala</span>
+                </div>
+
+                <!-- Pilar 4 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-400/20 text-emerald-300 flex items-center justify-center text-xl mb-5">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Lingkungan Hidup</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Kerja bakti bersih lingkungan RT, edukasi pemilahan sampah daur ulang, dan penanaman tanaman hias.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-emerald-300">Dua Mingguan</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. GALERI KEGIATAN & FILTER -->
+        <section id="galeri" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2">Dokumentasi Momen</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Galeri Kegiatan Pemuda</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-emerald-400 to-amber-gold mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-10 text-xs sm:text-sm">
+                <button data-gallery-filter="all" class="gallery-filter-btn px-4 py-2 rounded-xl bg-emerald-500 text-[#031915] font-bold transition-all">Semua</button>
+                <button data-gallery-filter="gotong-royong" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-all">Gotong Royong</button>
+                <button data-gallery-filter="hut-ri" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-all">HUT RI</button>
+                <button data-gallery-filter="destinasi" class="gallery-filter-btn px-4 py-2 rounded-xl glass-card text-slate-200 hover:text-emerald-300 transition-all">Destinasi</button>
+            </div>
+
+            <!-- Gallery Interactive Grid -->
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Destinasi -->
+                <div class="gallery-item destinasi glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/destinasi.jpg" data-lightbox-caption="Kegiatan Wisata Bersama Karang Taruna Cakra Muda di Pantai">
+                    <img src="assets/destinasi.jpg" alt="Karang Taruna Cakra Muda berwisata bersama di pantai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
+                        <span class="text-[10px] text-teal-300 uppercase font-semibold">Destinasi</span>
+                        <h4 class="text-sm font-bold text-white">Wisata Bersama di Pantai</h4>
+                    </div>
+                </div>
+
+                <!-- Gotong Royong -->
+                <div class="gallery-item gotong-royong glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/gotong-royong-memasak.jpg" data-lightbox-caption="Gotong Royong Membungkus Hadiah untuk Adik-adik">
+                    <img src="assets/gotong-royong-memasak.jpg" alt="Warga bergotong royong membungkus hadiah untuk adik-adik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
+                        <span class="text-[10px] text-emerald-300 uppercase font-semibold">Gotong Royong</span>
+                        <h4 class="text-sm font-bold text-white">Membungkus Hadiah untuk Adik-adik</h4>
+                    </div>
+                </div>
+
+                <!-- HUT RI: Panitia pria -->
+                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/semarak-17-agustus.jpeg" data-lightbox-caption="Semarak Panitia Lomba Kemerdekaan Karang Taruna Cakra Muda Pria">
+                    <img src="assets/semarak-17-agustus.jpeg" alt="Semarak panitia lomba kemerdekaan Karang Taruna Cakra Muda pria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
+                        <span class="text-[10px] text-amber-gold uppercase font-semibold">HUT RI</span>
+                        <h4 class="text-sm font-bold text-white">Semarak Panitia Lomba Kemerdekaan - Pria</h4>
+                    </div>
+                </div>
+
+                <!-- HUT RI: Panitia wanita -->
+                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/semarak-17-agustus-wanita.jpeg" data-lightbox-caption="Semarak Panitia Lomba Kemerdekaan Karang Taruna Cakra Muda Wanita">
+                    <img src="assets/semarak-17-agustus-wanita.jpeg" alt="Semarak panitia lomba kemerdekaan Karang Taruna Cakra Muda wanita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
+                        <span class="text-[10px] text-amber-gold uppercase font-semibold">HUT RI</span>
+                        <h4 class="text-sm font-bold text-white">Semarak Panitia Lomba Kemerdekaan - Wanita</h4>
+                    </div>
+                </div>
+
+                <!-- HUT RI: Lomba -->
+                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/lomba-hut-ri.jpg" data-lightbox-caption="Lomba 17 Agustus Karang Taruna Cakra Muda">
+                    <img src="assets/lomba-hut-ri.jpg" alt="Lomba 17 Agustus bersama warga dan Karang Taruna Cakra Muda" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
+                        <span class="text-[10px] text-amber-gold uppercase font-semibold">HUT RI</span>
+                        <h4 class="text-sm font-bold text-white">Lomba</h4>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. KONTAK & FORM PENDAFTARAN -->
+        <section id="gabung" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+                <!-- Form Pendaftaran Ke WhatsApp -->
+                <div class="lg:col-span-7 glass-card p-8 rounded-3xl relative">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-[11px] font-semibold mb-2">
+                            <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i> Langsung Terhubung ke WhatsApp
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Formulir Pendaftaran Pemuda</h3>
+                        <p class="text-xs text-slate-400 mt-1">Isi data di bawah ini, lalu klik tombol untuk mengirimkan format pendaftaran langsung via WhatsApp. (Persyaratan usia minimal 18 tahun).</p>
+                    </div>
+
+                    <!-- Alert / Banner Peringatan Usia -->
+                    <div id="ageErrorAlert" class="hidden mb-4 p-3.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-3 transition-all">
+                        <i class="fa-solid fa-triangle-exclamation text-base flex-shrink-0"></i>
+                        <span>Mohon maaf, pendaftaran Karang Taruna Cakra Muda khusus untuk warga berusia **minimal 18 tahun**.</span>
+                    </div>
+
+                    <form id="joinForm" class="space-y-4 text-xs sm:text-sm">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-slate-300 font-semibold mb-1">Nama Lengkap *</label>
+                                <input type="text" id="formNama" required placeholder="Contoh: Budi Santoso" class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-slate-300 font-semibold mb-1">Usia (Tahun) <span class="text-emerald-400 font-normal text-[11px]">(Min. 18 thn) *</span></label>
+                                <input type="number" id="formUsia" min="18" max="60" required placeholder="Contoh: 19" class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-slate-300 font-semibold mb-1">RT / RW *</label>
+                                <input type="text" id="formRtRw" required placeholder="Contoh: RT 02 / RW 03" value="RT 02 / RW 03" class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-slate-300 font-semibold mb-1">Nomor WhatsApp / HP *</label>
+                                <input type="tel" id="formHp" required placeholder="Contoh: 081234567890" class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Minat / Bidang Kegiatan *</label>
+                            <select id="formMinat" class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                                <option value="Olahraga & Kebugaran">Olahraga & Kebugaran</option>
+                                <option value="Seni, Musik & Kreatif">Seni, Musik & Kreatif</option>
+                                <option value="Kegiatan Sosial & Keagamaan">Kegiatan Sosial & Keagamaan</option>
+                                <option value="Kewirausahaan / UMKM">Kewirausahaan / UMKM</option>
+                                <option value="Dokumentasi & Media Sosial">Dokumentasi & Media Sosial</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Alasan / Harapan Bergabung *</label>
+                            <textarea id="formPesan" rows="3" required placeholder="Ingin menambah relasi, belajar organisasi, dan aktif dalam kegiatan warga..." class="w-full bg-[#031915]/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-sm shadow-md hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Pendaftaran via WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Kontak & Alamat Sekertariat -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card p-8 rounded-3xl">
+                        <h4 class="text-xl font-bold text-white mb-6">Informasi Sekretariat</h4>
+                        <div class="space-y-4 text-xs sm:text-sm text-slate-300">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0 text-base">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white">Alamat</h5>
+                                    <p class="text-slate-400 mt-0.5">Ds. Sonopatik, Dsn. Sono, RT 02 / RW 03</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center flex-shrink-0 text-base">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white">WhatsApp Admin / Humas</h5>
+                                    <p class="text-slate-400 mt-0.5" id="displayWaContact">087756510552</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-9 h-9 rounded-xl bg-amber-gold/20 text-amber-gold flex items-center justify-center flex-shrink-0 text-base">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white">Email Resmi</h5>
+                                    <p class="text-slate-400 mt-0.5">karangtruna@2937gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="pt-6 mt-6 border-t border-white/10">
+                            <h5 class="text-[11px] uppercase font-bold text-slate-400 mb-3">Media Sosial</h5>
+                            <div class="flex gap-3">
+                                <a href="https://www.instagram.com/cakra_muda23?cplk=YXpkdm5rMHlzNGsy" aria-label="Instagram Cakra Muda @cakra_muda23" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-300 transition-all"><i class="fa-brands fa-instagram text-base"></i></a>
+                                <a href="https://www.tiktok.com/@cakramuda_23?_r=1&amp;_t=ZS-9ApTicrSo0S" aria-label="TikTok Cakra Muda @cakramuda_23" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-300 transition-all"><i class="fa-brands fa-tiktok text-base"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 7. FOOTER -->
+    <footer class="glass-nav border-t border-white/10 py-8 px-4 sm:px-6 lg:px-8 relative z-10 mt-12 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="text-slate-400">
+                    &copy; 2026 <strong class="text-white">Karang Taruna Cakra Muda RT 02 / RW 03</strong>.
+                </p>
+                <p class="text-slate-500 mt-0.5">Wadah Pemuda Bersatu, Berkarya, dan Berdampak.</p>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="#hero" class="hover:text-emerald-300 transition-colors">Atas</a>
+                <span>•</span>
+                <a href="#tentang" class="hover:text-emerald-300 transition-colors">Profil</a>
+                <span>•</span>
+                <a href="#proker" class="hover:text-emerald-300 transition-colors">Program</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL LIGHTBOX FOTO GALERI -->
+    <div id="lightboxModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="max-w-3xl w-full relative">
+            <button data-lightbox-close class="absolute -top-10 right-0 text-white text-xl p-1 hover:text-emerald-400">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="" class="w-full max-h-[75vh] object-contain rounded-2xl mb-3 border border-white/10">
+            <p id="lightboxCaption" class="text-center text-xs font-medium text-slate-300"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
