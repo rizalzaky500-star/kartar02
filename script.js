@@ -3,6 +3,7 @@
 // Gunakan kode negara tanpa tanda '+', contoh: '6281234567890'
 // =========================================================================
 const TELEPHONE_WA = '6281234567890';
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 document.addEventListener('DOMContentLoaded', () => {
     const displayEl = document.getElementById('displayWaContact');
@@ -102,6 +103,8 @@ function initParticles() {
 initParticles();
 
 function animateCanvas() {
+    if (prefersReducedMotion.matches) return;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
@@ -109,7 +112,7 @@ function animateCanvas() {
     }
     requestAnimationFrame(animateCanvas);
 }
-animateCanvas();
+if (!prefersReducedMotion.matches) animateCanvas();
 
 // --- 2. SCROLL PROGRESS INDICATOR ---
 window.addEventListener('scroll', () => {
@@ -122,12 +125,19 @@ window.addEventListener('scroll', () => {
 // --- 3. MOBILE MENU TOGGLE ---
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
+function setMobileMenuOpen(isOpen) {
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    menuBtn.setAttribute('aria-label', isOpen ? 'Tutup Menu Navigation' : 'Buka Menu Navigation');
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    mobileMenu.inert = !isOpen;
+}
+
 menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+    setMobileMenuOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
 });
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
+        setMobileMenuOpen(false);
     });
 });
 
@@ -150,6 +160,11 @@ const counters = document.querySelectorAll('.counter');
 function startCounters() {
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
+        if (prefersReducedMotion.matches) {
+            counter.innerText = target;
+            return;
+        }
+
         const speed = 40;
         const update = () => {
             const count = +counter.innerText;
@@ -204,6 +219,10 @@ function openLightbox(imgUrl, caption) {
 function closeLightbox() {
     const modal = document.getElementById('lightboxModal');
     modal.classList.remove('opacity-100');
+    if (prefersReducedMotion.matches) {
+        modal.classList.add('hidden');
+        return;
+    }
     setTimeout(() => modal.classList.add('hidden'), 300);
 }
 

@@ -48,7 +48,7 @@
                     <a href="#gabung" class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#031915] font-bold text-xs sm:text-sm shadow-md hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all duration-300">
                         <i class="fa-solid fa-paper-plane text-xs"></i> Pendaftaran
                     </a>
-                    <button id="menuBtn" aria-label="Buka Menu Navigation" class="md:hidden text-xl text-slate-200 hover:text-emerald-300 p-2 focus:outline-none">
+                    <button id="menuBtn" type="button" aria-label="Buka Menu Navigation" aria-controls="mobileMenu" aria-expanded="false" class="md:hidden text-xl text-slate-200 hover:text-emerald-300 p-2 focus:outline-none">
                         <i class="fa-solid fa-bars-staggered"></i>
                     </button>
                 </div>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Mobile Drawer Navigation -->
-        <div id="mobileMenu" class="hidden md:hidden max-w-7xl mx-auto px-4 mt-2">
+        <div id="mobileMenu" aria-hidden="true" inert class="md:hidden max-w-7xl mx-auto px-4 mt-2">
             <div class="glass-nav rounded-2xl p-5 flex flex-col gap-3 shadow-xl border border-white/10 text-sm">
                 <a href="#hero" class="mobile-nav-link text-slate-200 font-medium py-2 border-b border-white/5 hover:text-emerald-300">Beranda</a>
                 <a href="#tentang" class="mobile-nav-link text-slate-200 font-medium py-2 border-b border-white/5 hover:text-emerald-300">Tentang Kami</a>
