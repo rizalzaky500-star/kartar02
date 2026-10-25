@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karang Taruna Cakra Muda RT 02 / RW 03 - Wadah Kreativitas & Kepemudaan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="tailwind.config.js"></script>
-    <!-- FontAwesome Icons & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" as="style" onload="this.onload=null; this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Tailwind CSS (static build for better mobile performance) -->
+    <link rel="stylesheet" href="tailwind-output.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-[#031915] text-slate-100 font-sans antialiased selection:bg-[#34caa1] selection:text-[#031915] min-h-screen flex flex-col relative overflow-x-hidden">
@@ -255,8 +257,8 @@
             <!-- Gallery Interactive Grid -->
             <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Destinasi -->
-                <div class="gallery-item destinasi glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/destinasi.jpg" data-lightbox-caption="Kegiatan Wisata Bersama Karang Taruna Cakra Muda di Pantai">
-                    <img src="assets/destinasi.jpg" alt="Karang Taruna Cakra Muda berwisata bersama di pantai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="gallery-item destinasi glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/optimized/destinasi.jpg" data-lightbox-caption="Kegiatan Wisata Bersama Karang Taruna Cakra Muda di Pantai">
+                    <img src="assets/optimized/destinasi.jpg" alt="Karang Taruna Cakra Muda berwisata bersama di pantai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
                         <span class="text-[10px] text-teal-300 uppercase font-semibold">Destinasi</span>
                         <h4 class="text-sm font-bold text-white">Wisata Bersama di Pantai</h4>
@@ -264,8 +266,8 @@
                 </div>
 
                 <!-- Gotong Royong -->
-                <div class="gallery-item gotong-royong glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/gotong-royong-memasak.jpg" data-lightbox-caption="Gotong Royong Membungkus Hadiah untuk Adik-adik">
-                    <img src="assets/gotong-royong-memasak.jpg" alt="Warga bergotong royong membungkus hadiah untuk adik-adik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="gallery-item gotong-royong glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/optimized/gotong-royong-memasak.jpg" data-lightbox-caption="Gotong Royong Membungkus Hadiah untuk Adik-adik">
+                    <img src="assets/optimized/gotong-royong-memasak.jpg" alt="Warga bergotong royong membungkus hadiah untuk adik-adik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
                         <span class="text-[10px] text-emerald-300 uppercase font-semibold">Gotong Royong</span>
                         <h4 class="text-sm font-bold text-white">Membungkus Hadiah untuk Adik-adik</h4>
@@ -273,8 +275,8 @@
                 </div>
 
                 <!-- HUT RI: Panitia pria -->
-                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/semarak-17-agustus.jpeg" data-lightbox-caption="Semarak Panitia Lomba Kemerdekaan Karang Taruna Cakra Muda Pria">
-                    <img src="assets/semarak-17-agustus.jpeg" alt="Semarak panitia lomba kemerdekaan Karang Taruna Cakra Muda pria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/optimized/semarak-17-agustus.jpg" data-lightbox-caption="Semarak Panitia Lomba Kemerdekaan Karang Taruna Cakra Muda Pria">
+                    <img src="assets/optimized/semarak-17-agustus.jpg" alt="Semarak panitia lomba kemerdekaan Karang Taruna Cakra Muda pria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
                         <span class="text-[10px] text-amber-gold uppercase font-semibold">HUT RI</span>
                         <h4 class="text-sm font-bold text-white">Semarak Panitia Lomba Kemerdekaan - Pria</h4>
@@ -282,8 +284,8 @@
                 </div>
 
                 <!-- HUT RI: Panitia wanita -->
-                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/semarak-17-agustus-wanita.jpeg" data-lightbox-caption="Semarak Panitia Lomba Kemerdekaan Karang Taruna Cakra Muda Wanita">
-                    <img src="assets/semarak-17-agustus-wanita.jpeg" alt="Semarak panitia lomba kemerdekaan Karang Taruna Cakra Muda wanita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/optimized/semarak-17-agustus-wanita.jpg" data-lightbox-caption="Semarak Panitia Lomba Kemerdekaan Karang Taruna Cakra Muda Wanita">
+                    <img src="assets/optimized/semarak-17-agustus-wanita.jpg" alt="Semarak panitia lomba kemerdekaan Karang Taruna Cakra Muda wanita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
                         <span class="text-[10px] text-amber-gold uppercase font-semibold">HUT RI</span>
                         <h4 class="text-sm font-bold text-white">Semarak Panitia Lomba Kemerdekaan - Wanita</h4>
@@ -291,8 +293,8 @@
                 </div>
 
                 <!-- HUT RI: Lomba -->
-                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/lomba-hut-ri.jpg" data-lightbox-caption="Lomba 17 Agustus Karang Taruna Cakra Muda">
-                    <img src="assets/lomba-hut-ri.jpg" alt="Lomba 17 Agustus bersama warga dan Karang Taruna Cakra Muda" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="gallery-item hut-ri glass-card rounded-2xl overflow-hidden group cursor-pointer h-64 relative" data-lightbox-src="assets/optimized/lomba-hut-ri.jpg" data-lightbox-caption="Lomba 17 Agustus Karang Taruna Cakra Muda">
+                    <img src="assets/optimized/lomba-hut-ri.jpg" alt="Lomba 17 Agustus bersama warga dan Karang Taruna Cakra Muda" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#031915] via-[#031915]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-5 flex flex-col justify-end">
                         <span class="text-[10px] text-amber-gold uppercase font-semibold">HUT RI</span>
                         <h4 class="text-sm font-bold text-white">Lomba</h4>
@@ -449,6 +451,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

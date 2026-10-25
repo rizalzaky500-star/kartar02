@@ -1,5 +1,6 @@
-tailwind.config = {
-    darkMode: 'class',
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: ["./index.html", "./script.js"],
     theme: {
         extend: {
             colors: {
@@ -22,7 +23,17 @@ tailwind.config = {
             },
             fontFamily: {
                 sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-            }
-        }
-    }
-};
+            },
+            // Support arbitrary values
+            width: {
+                '3px': '3px',
+            },
+            height: {
+                '3px': '3px',
+            },
+        },
+        // Support arbitrary values like bg-[#031915], text-[11px], etc.
+        // These are handled automatically by Tailwind JIT
+    },
+    plugins: [],
+}

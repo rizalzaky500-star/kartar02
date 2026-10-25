@@ -93,7 +93,9 @@ class Particle {
 
 function initParticles() {
     particles = [];
-    const count = Math.min(Math.floor(window.innerWidth / 25), 45);
+    // Reduce particles on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    const count = Math.min(Math.floor(window.innerWidth / 25), isMobile ? 15 : 30);
     for (let i = 0; i < count; i++) {
         particles.push(new Particle());
     }
@@ -111,11 +113,15 @@ function animateCanvas() {
 animateCanvas();
 
 // --- 2. SCROLL PROGRESS INDICATOR ---
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('scroll-progress').style.width = scrolled + '%';
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('scroll-progress').style.width = scrolled + '%';
+    }, 16);
 });
 
 // --- 3. MOBILE MENU TOGGLE ---
@@ -132,13 +138,17 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
 
 // --- 4. GENTLE SCROLL REVEAL ---
 const revealElements = document.querySelectorAll('.reveal');
+const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+// Positive top margin triggers observer BEFORE element reaches viewport
+const rootMargin = isMobileViewport ? '600px 0px 0px 0px' : '400px 0px 0px 0px';
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0, rootMargin });
 revealElements.forEach(el => revealObserver.observe(el));
 
 // --- 5. SMOOTH COUNTER UP ---
@@ -149,18 +159,17 @@ const counters = document.querySelectorAll('.counter');
 function startCounters() {
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
-        const speed = 40;
+        const speed = 20;
+        const inc = Math.ceil(target / speed);
+        let count = 0;
         const update = () => {
-            const count = +counter.innerText;
-            const inc = Math.ceil(target / speed);
+            count = Math.min(count + inc, target);
+            counter.innerText = count;
             if (count < target) {
-                counter.innerText = Math.min(count + inc, target);
-                setTimeout(update, 35);
-            } else {
-                counter.innerText = target;
+                requestAnimationFrame(update);
             }
         };
-        update();
+        requestAnimationFrame(update);
     });
 }
 

@@ -61,3 +61,23 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #34caa1;
 }
+
+/* Mobile Performance Optimizations */
+@media (max-width: 767.95px) {
+    .glass-card {
+        transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px -10px rgba(3, 25, 21, 0.4);
+    }
+    /* Skip reveal animation on mobile — content should appear immediately */
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .gallery-item img {
+        transition: transform 0.2s ease-out;
+    }
+}
